@@ -1,0 +1,27 @@
+{% raw %}
+  <template id="apps-table">
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Version</th>
+        <th>Created At</th>
+        <th>Download Count</th>
+        <th></th>
+        <th></th>
+      </thead>
+      <tfoot>
+        <td colspan="6">{{ apps.length }} apps</td>
+      </tfoot>
+      <tbody>
+        <tr v-for="app in apps" track-by="$index" transition="fade">
+          <td>{{ app.name }}</td>
+          <td>{{ app.version }}</td>
+          <td>{{ app.created_at | formatDate }}</td>
+          <td>{{ app.download_count }}</td>
+          <td><a href="itms-services://?action=download-manifest&url=/apps/{{ app.id }}/manifest.plist" class="install">Install</a></td>
+          <td><a href="javascript:void(0);" v-on:click="remove" data-index="{{ $index }}" class="delete">Delete</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </template>
+{% endraw %}

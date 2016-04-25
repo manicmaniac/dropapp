@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
+{% endblock %}
+
+{% block js %}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/superagent/1.2.0/superagent.min.js"></script>
+{% assets 'js' %}
+  <script defer src="{{ ASSET_URL }}"></script>
+{% endassets %}
+{% endblock %}
+
+{% block title %}Apps{% endblock %}
+
+{% block content %}
+  <h1>Apps</h1>
+  {% include 'apps-table.html' %}
+  <form action="{{ url_for('api_new_app') }}" class="dropzone" id="app-dropzone"></form>
+{% endblock %}
