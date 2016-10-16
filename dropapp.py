@@ -6,17 +6,12 @@ import re
 from flask import (Flask, jsonify, make_response, redirect, render_template,
                    request, url_for)
 from flask.ext.restless import APIManager, simple_serialize
-from flask.ext.assets import Environment, Bundle
 
 from models import App, db
 
 
 web = Flask(__name__)
 web.config.from_pyfile('config.py')
-
-assets = Environment(web)
-assets.register('js', Bundle('js/*.coffee', filters=['coffeescript', 'jsmin'], output='js/min/show_apps.js'))
-assets.register('css', Bundle('css/*.css', filters='cssmin', output='css/min/style.css'))
 
 handler = StreamHandler()
 handler.setLevel = web.config.get('LOG_LEVEL', 0)
@@ -60,7 +55,7 @@ def api_new_app():
         file = request.files['file']
         app = App.from_file(file)
     except Exception as e:
-        web.logger.error('%s', e.message)
+        web.logger.error('%r', e)
         res = jsonify({'message': e.message})
         res.status_code = 400
         return res

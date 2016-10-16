@@ -3,9 +3,7 @@
 <head>
   <title>{% block title %}{% endblock %}</title>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/milligram/1.1.0/milligram.min.css" />
-{% assets 'css' %}
-<link rel="stylesheet" href="{{ ASSET_URL }}" />
-{% endassets %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 {% block css %}{% endblock %}
   <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.21/vue.min.js"></script>
 {% block js %}{% endblock %}

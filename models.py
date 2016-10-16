@@ -25,7 +25,7 @@ class App(db.Model):
         filename = uuid().hex + ext
         app = cls(bundle_id=ipa.app_info.get('CFBundleIdentifier', ''),
                   filename=filename,
-                  name=ipa.get_app_name().decode('utf-8'),
+                  name=ipa.get_app_name(),
                   version=ipa.get_app_version())
         file.save(os.path.join(db.get_app().config['UPLOAD_DIR'], filename))
         return app
